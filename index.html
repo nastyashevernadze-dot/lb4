@@ -434,6 +434,10 @@
 
         .hero__title-icon {
             display: inline-block;
+            width: 1.1em;
+            height: 1.1em;
+            object-fit: contain;
+            vertical-align: -0.1em;
             animation: filmBob 3s ease-in-out infinite;
         }
 
@@ -1384,7 +1388,9 @@
                 <div class="hero__grid">
                     <div class="hero__content">
                         <h1 class="hero__title">
-                            <span class="hero__title-icon" aria-hidden="true">🎬</span>
+                            <img class="hero__title-icon"
+                                 src="https://commons.wikimedia.org/wiki/Special:FilePath/Clapperboard.svg?width=200"
+                                 alt="" aria-hidden="true">
                             Cinema Cafe
                         </h1>
                         <p class="hero__slogan">Кофе, который стоит посмотреть</p>
