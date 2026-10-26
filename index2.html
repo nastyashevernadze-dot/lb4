@@ -1,0 +1,756 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema Cafe</title>
+
+    <style>
+        :root {
+            --red: #E63946;
+            --orange: #F77F00;
+            --yellow: #FCBF49;
+            --cream: #FFF8E7;
+            --dark: #2B1B17;
+            --dark-section: #1A1110;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1160px, 92%);
+            margin: auto;
+        }
+
+        /* Шапка сайта */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(26, 17, 16, 0.96);
+            color: var(--cream);
+            box-shadow: 0 4px 20px #0003;
+        }
+
+        .header-inner {
+            min-height: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--yellow);
+        }
+
+        .tagline {
+            font-size: 12px;
+            color: #ddd0c4;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a:hover {
+            color: var(--orange);
+        }
+
+        /* Главный экран */
+
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            color: var(--cream);
+            background:
+                radial-gradient(circle at 20% 30%,
+                    #7b2d26, transparent 35%),
+                linear-gradient(135deg,
+                    #1A1110, #351b17, #1A1110);
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 82px);
+            color: var(--yellow);
+            animation: glow 3s infinite alternate;
+        }
+
+        .hero h2 {
+            font-size: 25px;
+            margin: 15px 0;
+        }
+
+        .hero p {
+            color: #e0cfc0;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 25px;
+            margin: 5px;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            background: linear-gradient(
+                135deg, var(--orange), var(--red)
+            );
+            box-shadow: 0 5px 20px #e6394666;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px #e6394699;
+        }
+
+        /* Ровная киноплёнка */
+
+        .film {
+            display: flex;
+            gap: 8px;
+            height: 110px;
+            margin: 45px 0 30px;
+            padding: 12px;
+            overflow: hidden;
+            background: #100b0a;
+            border-top: 3px solid var(--yellow);
+            border-bottom: 3px solid var(--yellow);
+            box-shadow: 0 0 25px #f77f0066;
+        }
+
+        .film-frame {
+            flex: 1 0 70px;
+            display: grid;
+            place-items: center;
+            font-size: 35px;
+            border: 3px solid #fff2d0;
+            animation: move 8s linear infinite;
+        }
+
+        .film-frame:nth-child(1) {
+            background: linear-gradient(135deg, #f77f00, #e63946);
+        }
+
+        .film-frame:nth-child(2) {
+            background: linear-gradient(135deg, #f7a6bb, #8e3155);
+        }
+
+        .film-frame:nth-child(3) {
+            background: linear-gradient(135deg, #fcbf49, #f77f00);
+        }
+
+        .film-frame:nth-child(4) {
+            background: linear-gradient(135deg, #6b2028, #1a1110);
+        }
+
+        .film-frame:nth-child(5) {
+            background: linear-gradient(135deg, #244a4b, #d08c36);
+        }
+
+        .film-frame:nth-child(6) {
+            background: linear-gradient(135deg, #8bd3dd, #725ac1);
+        }
+
+        /* Общие секции */
+
+        section.content-section {
+            padding: 75px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(30px, 4vw, 45px);
+            margin-bottom: 15px;
+        }
+
+        .section-description {
+            text-align: center;
+            color: #77645b;
+            margin-bottom: 35px;
+        }
+
+        /* О нас */
+
+        .about-text {
+            max-width: 850px;
+            margin: 30px auto 45px;
+            padding: 30px;
+            background: #fffdf7;
+            border-left: 5px solid var(--orange);
+            border-radius: 8px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+        }
+
+        /* Карточки залов и меню */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 25px;
+            border-radius: 16px;
+            background: #fffdf7;
+            box-shadow: 0 5px 20px #2b1b1710;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 30px #2b1b1722;
+        }
+
+        .card-icon {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #77645b;
+            font-size: 15px;
+        }
+
+        /* Меню */
+
+        #menu {
+            background: #f4e9d7;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .drink {
+            padding: 22px;
+            background: #fffdf7;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .drink:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px #2b1b1722;
+        }
+
+        .price {
+            margin-top: 15px;
+            color: var(--red);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Акции и бонусы */
+
+        .offer {
+            padding: 22px;
+            background: #fffdf7;
+            border-radius: 15px;
+            border-top: 4px solid var(--orange);
+        }
+
+        .offer h3 {
+            margin: 10px 0;
+        }
+
+        #bonuses {
+            background: var(--dark-section);
+            color: var(--cream);
+        }
+
+        #bonuses .section-description {
+            color: #d2c1b3;
+        }
+
+        #bonuses .offer {
+            background: #30201b;
+            border-color: var(--yellow);
+        }
+
+        #bonuses .offer p {
+            color: #e0cfc0;
+        }
+
+        /* Контакты */
+
+        .contacts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .contact-info,
+        .map {
+            padding: 25px;
+            border-radius: 15px;
+            background: #fffdf7;
+        }
+
+        .contact-info p {
+            margin: 12px 0;
+        }
+
+        .map {
+            min-height: 250px;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            background:
+                repeating-linear-gradient(
+                    0deg, transparent 0 35px,
+                    #2b1b1710 36px 37px
+                ),
+                repeating-linear-gradient(
+                    90deg, transparent 0 35px,
+                    #2b1b1710 36px 37px
+                ),
+                #f9e8c9;
+        }
+
+        /* Подвал */
+
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            background: #120c0b;
+            color: var(--cream);
+        }
+
+        footer p {
+            margin: 8px 0;
+        }
+
+        /* Анимации */
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #f77f00;
+            }
+            to {
+                text-shadow: 0 0 25px #f77f00,
+                             0 0 45px #e63946;
+            }
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-15px);
+            }
+        }
+
+        /* Адаптация под планшеты и телефоны */
+
+        @media (max-width: 900px) {
+            .header-inner {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .cards,
+            .menu-grid,
+            .contacts {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 55px 0;
+            }
+
+            .hero h2 {
+                font-size: 20px;
+            }
+
+            nav {
+                gap: 12px;
+                font-size: 14px;
+            }
+
+            .film {
+                height: 80px;
+                gap: 5px;
+                padding: 10px 5px;
+            }
+
+            .film-frame {
+                flex-basis: 45px;
+                font-size: 24px;
+            }
+
+            section.content-section {
+                padding: 50px 0;
+            }
+
+            .about-text {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <div>
+                <a href="#home" class="logo">🎞️ Cinema Cafe</a>
+                <div class="tagline">
+                    Кофе, который стоит посмотреть
+                </div>
+            </div>
+
+            <nav>
+                <a href="#about">О нас</a>
+                <a href="#menu">Меню</a>
+                <a href="#promotions">Акции</a>
+                <a href="#bonuses">Бонусы</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>Cinema Cafe 🎬</h1>
+                <h2>Кофе, который стоит посмотреть</h2>
+                <p>Атмосфера кино в каждой чашке</p>
+
+                <a class="button" href="#contacts">
+                    Забронировать столик
+                </a>
+
+                <div class="film">
+                    <div class="film-frame">🧙</div>
+                    <div class="film-frame">💕</div>
+                    <div class="film-frame">😂</div>
+                    <div class="film-frame">🔪</div>
+                    <div class="film-frame">🕵️</div>
+                    <div class="film-frame">🐭</div>
+                </div>
+
+                <p>Шесть залов. Десятки историй. Один идеальный кофе.</p>
+            </div>
+        </section>
+
+        <section class="content-section" id="about">
+            <div class="container">
+                <h2 class="section-title">Больше, чем кофейня</h2>
+                <p class="section-description">
+                    Место, где любимые истории становятся частью вашего дня.
+                </p>
+
+                <div class="about-text">
+                    <p>
+                        Cinema Cafe открылась в 2019 году, когда два друга —
+                        бариста Максим и киноман Анна — решили объединить
+                        две свои страсти: свежеобжаренный кофе и большое кино.
+                    </p>
+                    <p>
+                        Началось всё с маленькой кофейни на шесть столов,
+                        где после сеансов в соседнем кинотеатре люди заходили
+                        обсудить фильм за чашкой эспрессо.
+                    </p>
+                    <p>
+                        Сегодня Cinema Cafe — это уникальное пространство,
+                        где каждый зал посвящён отдельному киножанру.
+                    </p>
+                </div>
+
+                <h2 class="section-title">Наши тематические залы</h2>
+                <p class="section-description">
+                    Выбирайте настроение для своего вечера.
+                </p>
+
+                <div class="cards">
+                    <article class="card">
+                        <div class="card-icon">🧙</div>
+                        <h3>Зал Фэнтези</h3>
+                        <p>
+                            Средневековые гобелены, светящиеся кристаллы,
+                            дубовые столы и напитки в глиняных кружках.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">💕</div>
+                        <h3>Зал Любовного кино</h3>
+                        <p>
+                            Бархатные диваны, розовый свет, свечи
+                            и специальное меню для двоих.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">😂</div>
+                        <h3>Зал Комедии</h3>
+                        <p>
+                            Яркие стены, забавные цитаты и вечера
+                            стендапа по пятницам.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🔪</div>
+                        <h3>Зал Триллера</h3>
+                        <p>
+                            Тёмные стены, таинственная музыка,
+                            потайные ниши и дымящиеся колбы.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🕵️</div>
+                        <h3>Зал Детектива</h3>
+                        <p>
+                            Кожаные кресла, печатные машинки,
+                            шахматы и нуар-квесты по выходным.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🐭</div>
+                        <h3>Зал Мультфильмов</h3>
+                        <p>
+                            Яркие цвета, мягкие пуфы, классика анимации
+                            и напитки с маршмеллоу.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="menu">
+            <div class="container">
+                <h2 class="section-title">Меню с характером</h2>
+                <p class="section-description">
+                    Авторские напитки с кинематографичным послевкусием.
+                </p>
+
+                <div class="menu-grid">
+                    <article class="drink">
+                        <div class="card-icon">🍺</div>
+                        <h3>«Сливочное пиво»</h3>
+                        <p>Сливочный напиток с карамелью и щепоткой магии.</p>
+                        <div class="price">350 ₽</div>
+                    </article>
+
+                    <article class="drink">
+                        <div class="card-icon">🗡️</div>
+                        <h3>«Убить Билла»</h3>
+                        <p>Двойной эспрессо с красным сиропом и апельсином.</p>
+                        <div class="price">420 ₽</div>
+                    </article>
+
+                    <article class="drink">
+                        <div class="card-icon">🦁</div>
+                        <h3>«Король Лев»</h3>
+                        <p>Латте с манговым сиропом и корицей.</p>
+                        <div class="price">380 ₽</div>
+                    </article>
+
+                    <article class="drink">
+                        <div class="card-icon">🕵️</div>
+                        <h3>«Шерлок»</h3>
+                        <p>Холодный колд-брю с тоником и розмарином.</p>
+                        <div class="price">400 ₽</div>
+                    </article>
+
+                    <article class="drink">
+                        <div class="card-icon">💍</div>
+                        <h3>«Властелин колец»</h3>
+                        <p>Капучино с воздушной пенкой и шоколадом.</p>
+                        <div class="price">450 ₽</div>
+                    </article>
+
+                    <article class="drink">
+                        <div class="card-icon">🚀</div>
+                        <h3>«Интерстеллар»</h3>
+                        <p>Черничный раф с ванилью и звёздной пылью.</p>
+                        <div class="price">440 ₽</div>
+                    </article>
+
+                    <article class="drink">
+                        <div class="card-icon">🐭</div>
+                        <h3>«Рататуй»</h3>
+                        <p>Лавандовый раф с малиной и нежным кремом.</p>
+                        <div class="price">390 ₽</div>
+                    </article>
+
+                    <article class="drink">
+                        <div class="card-icon">🧞</div>
+                        <h3>«Аладдин»</h3>
+                        <p>Фраппе с фисташкой, мятой и золотой карамелью.</p>
+                        <div class="price">410 ₽</div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="promotions">
+            <div class="container">
+                <h2 class="section-title">Наши акции</h2>
+                <p class="section-description">
+                    Больше поводов заглянуть к нам.
+                </p>
+
+                <div class="cards">
+                    <article class="offer">
+                        <div class="card-icon">🎓</div>
+                        <h3>Студенческая скидка</h3>
+                        <p>Скидка 20% по студенческому билету в будни с 10:00 до 16:00.</p>
+                    </article>
+
+                    <article class="offer">
+                        <div class="card-icon">🎬</div>
+                        <h3>Кино-вторник</h3>
+                        <p>Покажите билет из кинотеатра и получите второй напиток в подарок.</p>
+                    </article>
+
+                    <article class="offer">
+                        <div class="card-icon">🍰</div>
+                        <h3>Счастливые часы</h3>
+                        <p>С 15:00 до 17:00 десерты со скидкой 30%.</p>
+                    </article>
+
+                    <article class="offer">
+                        <div class="card-icon">🎂</div>
+                        <h3>День рождения</h3>
+                        <p>Бесплатный десерт и скидка 15% на меню.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="bonuses">
+            <div class="container">
+                <h2 class="section-title">Бонусная программа</h2>
+                <p class="section-description">
+                    Приятные подарки для наших постоянных гостей.
+                </p>
+
+                <div class="cards">
+                    <article class="offer">
+                        <div class="card-icon">🎁</div>
+                        <h3>200 бонусов</h3>
+                        <p>Получите приветственные бонусы после регистрации в приложении.</p>
+                    </article>
+
+                    <article class="offer">
+                        <div class="card-icon">☕</div>
+                        <h3>Каждый шестой кофе</h3>
+                        <p>Шестой кофе — в подарок по карте лояльности.</p>
+                    </article>
+
+                    <article class="offer">
+                        <div class="card-icon">🎂</div>
+                        <h3>День рождения</h3>
+                        <p>Получайте двойные бонусы в свой особенный день.</p>
+                    </article>
+
+                    <article class="offer">
+                        <div class="card-icon">🎬</div>
+                        <h3>Кинопоказы</h3>
+                        <p>Участвуйте в закрытых кинопоказах для держателей карты.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="contacts">
+            <div class="container">
+                <h2 class="section-title">Контакты</h2>
+                <p class="section-description">
+                    Встретимся за чашкой кофе!
+                </p>
+
+                <div class="contacts">
+                    <div class="contact-info">
+                        <p>📍 <strong>Адрес:</strong> г. Москва, ул. Кинорежиссёрская, д. 24, стр. 1</p>
+                        <p>🕐 <strong>Пн–Чт:</strong> 8:00–23:00</p>
+                        <p>🕐 <strong>Пт–Сб:</strong> 8:00–01:00</p>
+                        <p>🕐 <strong>Вс:</strong> 9:00–22:00</p>
+                        <p>📞 <a href="tel:+74951234567">+7 (495) 123-45-67</a></p>
+                        <p>📧 <a href="mailto:hello@cinemacafe.ru">hello@cinemacafe.ru</a></p>
+                        <p>✈️ Telegram | 💙 VK | 📸 Instagram</p>
+                    </div>
+
+                    <div class="map">
+                        <div>
+                            <div class="card-icon">📍</div>
+                            <h3>Мы ждём вас!</h3>
+                            <p>Москва, улица Кинорежиссёрская, 24</p>
+                            <p>Здесь может располагаться карта.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <h2>🎞️ Cinema Cafe</h2>
+            <p>Кофе, который стоит посмотреть</p>
+            <p>© 2025 Cinema Cafe. Все права защищены.</p>
+            <p>Сделано с любовью к кофе и кино ❤️</p>
+        </div>
+    </footer>
+
+</body>
+</html>
