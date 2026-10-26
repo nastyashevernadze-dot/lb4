@@ -707,10 +707,20 @@
             opacity: 1;
         }
 
-        .hall-card__icon {
-            font-size: 2.8rem;
-            margin-bottom: 0.4em;
+        .hall-card__img {
             display: block;
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1em;
+            border: 2px solid rgba(247, 127, 0, 0.2);
+            transition: transform 0.35s ease, border-color 0.35s ease;
+        }
+
+        .hall-card:hover .hall-card__img {
+            transform: scale(1.03);
+            border-color: rgba(247, 127, 0, 0.5);
         }
 
         .hall-card__title {
@@ -1499,7 +1509,10 @@
                 <h3 class="section-title section-title--sub">Наши залы</h3>
                 <div class="halls">
                     <article class="hall-card card">
-                        <span class="hall-card__icon" aria-hidden="true">🧙</span>
+                        <img class="hall-card__img"
+                             src="https://commons.wikimedia.org/wiki/Special:FilePath/Neuschwanstein_Castle.jpg?width=400"
+                             alt="Замок в тумане — атмосфера зала Фэнтези"
+                             loading="lazy">
                         <h4 class="hall-card__title">Зал Фэнтези</h4>
                         <p class="hall-card__desc">
                             Средневековые гобелены, светящиеся кристаллы, тяжёлые дубовые столы.
@@ -1507,7 +1520,10 @@
                         </p>
                     </article>
                     <article class="hall-card card">
-                        <span class="hall-card__icon" aria-hidden="true">💕</span>
+                        <img class="hall-card__img"
+                             src="https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg?width=400"
+                             alt="Эйфелева башня на закате — атмосфера зала Любовного кино"
+                             loading="lazy">
                         <h4 class="hall-card__title">Зал Любовного кино</h4>
                         <p class="hall-card__desc">
                             Бархатные диваны, приглушённый розовый свет, свечи.
@@ -1515,7 +1531,10 @@
                         </p>
                     </article>
                     <article class="hall-card card">
-                        <span class="hall-card__icon" aria-hidden="true">😂</span>
+                        <img class="hall-card__img"
+                             src="https://commons.wikimedia.org/wiki/Special:FilePath/Comedy_and_tragedy_masks.jpg?width=400"
+                             alt="Театральные маски комедии и трагедии — атмосфера зала Комедии"
+                             loading="lazy">
                         <h4 class="hall-card__title">Зал Комедии</h4>
                         <p class="hall-card__desc">
                             Яркие жёлтые стены с цитатами, качели вместо стульев,
@@ -1523,7 +1542,10 @@
                         </p>
                     </article>
                     <article class="hall-card card">
-                        <span class="hall-card__icon" aria-hidden="true">🔪</span>
+                        <img class="hall-card__img"
+                             src="https://commons.wikimedia.org/wiki/Special:FilePath/Chef%27s_knife.jpg?width=400"
+                             alt="Нож на тёмном фоне — атмосфера зала Триллера"
+                             loading="lazy">
                         <h4 class="hall-card__title">Зал Триллера</h4>
                         <p class="hall-card__desc">
                             Тёмные стены, приглушённый свет, тревожная музыка,
@@ -1531,7 +1553,10 @@
                         </p>
                     </article>
                     <article class="hall-card card">
-                        <span class="hall-card__icon" aria-hidden="true">🕵️</span>
+                        <img class="hall-card__img"
+                             src="https://commons.wikimedia.org/wiki/Special:FilePath/Magnifying_glass.jpg?width=400"
+                             alt="Лупа — атмосфера зала Детектива"
+                             loading="lazy">
                         <h4 class="hall-card__title">Зал Детектива</h4>
                         <p class="hall-card__desc">
                             Кожаные кресла, приглушённый янтарный свет, старые печатные машинки
@@ -1540,7 +1565,10 @@
                         </p>
                     </article>
                     <article class="hall-card card">
-                        <span class="hall-card__icon" aria-hidden="true">🐭</span>
+                        <img class="hall-card__img"
+                             src="https://commons.wikimedia.org/wiki/Special:FilePath/Mickey_Mouse.svg?width=400"
+                             alt="Микки Маус — атмосфера зала Мультфильмов"
+                             loading="lazy">
                         <h4 class="hall-card__title">Зал Мультфильмов</h4>
                         <p class="hall-card__desc">
                             Яркие цвета, мягкие пуфы в форме облаков, стены с рисунками
