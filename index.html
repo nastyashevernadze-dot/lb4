@@ -892,10 +892,18 @@
             border-color: rgba(252, 191, 73, 0.5);
         }
 
-        .bonus-card__icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.4em;
+        .bonus-card__img {
             display: block;
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+            margin: 0 auto 0.6em;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+            transition: transform 0.3s ease;
+        }
+
+        .bonus-card:hover .bonus-card__img {
+            transform: scale(1.1) rotate(-5deg);
         }
 
         .bonus-card__title {
@@ -1706,22 +1714,30 @@
                 <p class="section-subtitle">Копите бонусы и обменивайте их на любимые напитки, десерты и впечатления.</p>
                 <div class="bonuses__grid">
                     <div class="bonus-card">
-                        <span class="bonus-card__icon" aria-hidden="true">🎁</span>
+                        <img class="bonus-card__img"
+                             src="https://commons.wikimedia.org/wiki/Special:FilePath/Emoji_u1f381.svg?width=200"
+                             alt="Подарок" aria-hidden="true">
                         <h3 class="bonus-card__title">200 приветственных бонусов</h3>
                         <p class="bonus-card__desc">Сразу после регистрации в приложении</p>
                     </div>
                     <div class="bonus-card">
-                        <span class="bonus-card__icon" aria-hidden="true">☕</span>
+                        <img class="bonus-card__img"
+                             src="https://commons.wikimedia.org/wiki/Special:FilePath/Emoji_u2615.svg?width=200"
+                             alt="Чашка кофе" aria-hidden="true">
                         <h3 class="bonus-card__title">Каждый 6-й кофе — в подарок</h3>
                         <p class="bonus-card__desc">Карта лояльности в приложении</p>
                     </div>
                     <div class="bonus-card">
-                        <span class="bonus-card__icon" aria-hidden="true">🎂</span>
+                        <img class="bonus-card__img"
+                             src="https://commons.wikimedia.org/wiki/Special:FilePath/Emoji_u1f382.svg?width=200"
+                             alt="Торт" aria-hidden="true">
                         <h3 class="bonus-card__title">Двойные бонусы</h3>
                         <p class="bonus-card__desc">В день рождения — двойные бонусы на всё</p>
                     </div>
                     <div class="bonus-card">
-                        <span class="bonus-card__icon" aria-hidden="true">🎬</span>
+                        <img class="bonus-card__img"
+                             src="https://commons.wikimedia.org/wiki/Special:FilePath/Clapperboard.svg?width=200"
+                             alt="Кинохлопушка" aria-hidden="true">
                         <h3 class="bonus-card__title">Закрытые кинопоказы</h3>
                         <p class="bonus-card__desc">Доступ для держателей карты</p>
                     </div>
